@@ -1,9 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "GitHub Cherry Pick",
+  "name": "Pick-a-Cherry",
+  "author": "Aashutosh Rathi",
   "version": "1.0",
   "description": "Adds a cherry icon next to GitHub commits for easy cherry-picking",
   "permissions": ["clipboardWrite"],
+  "default_locale": "en",
   "content_scripts": [
     {
       "matches": ["*://github.com/*"],
@@ -18,8 +20,8 @@
     }
   ],
   "icons": {
-    "16": "icon16.png",
-    "48": "icon48.png",
-    "128": "icon128.png"
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
   }
 }
