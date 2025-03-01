@@ -123,7 +123,34 @@ function observeChanges() {
   });
 }
 
-// Initialize when the page loads
-document.addEventListener("DOMContentLoaded", initCherryPicker);
+function setupURLChangeListener() {
+  let lastUrl = location.href;
 
-initCherryPicker();
+  const urlObserver = new MutationObserver(() => {
+    if (location.href !== lastUrl) {
+      lastUrl = location.href;
+
+      setTimeout(() => {
+        initCherryPicker();
+      }, 500);
+    }
+  });
+
+  urlObserver.observe(document.querySelector("body"), {
+    childList: true,
+    subtree: true,
+  });
+}
+
+const init = () => {
+  initCherryPicker();
+  setupURLChangeListener();
+};
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => {
+    init();
+  });
+} else {
+  init();
+}
