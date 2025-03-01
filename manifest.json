@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "GitHub Cherry Pick",
+  "version": "1.0",
+  "description": "Adds a cherry icon next to GitHub commits for easy cherry-picking",
+  "permissions": ["clipboardWrite"],
+  "content_scripts": [
+    {
+      "matches": ["*://github.com/*"],
+      "js": ["content.js"],
+      "css": ["style.css"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["cherry.svg"],
+      "matches": ["*://github.com/*"]
+    }
+  ],
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}

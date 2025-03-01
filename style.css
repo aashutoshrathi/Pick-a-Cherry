@@ -1,0 +1,59 @@
+.cherry-pick-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  margin-left: 8px;
+  border-radius: 4px;
+  position: relative;
+  vertical-align: middle;
+}
+
+.cherry-pick-button:hover {
+  background-color: rgba(216, 27, 96, 0.1);
+}
+
+.cherry-pick-button:hover .cherry-icon {
+  animation: wiggle 0.5s ease;
+}
+
+.cherry-icon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+}
+
+/* Animation for hover effect */
+@keyframes wiggle {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(10deg); }
+  50% { transform: rotate(-10deg); }
+  75% { transform: rotate(5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Feedback animation */
+.cherry-pick-feedback {
+  position: absolute;
+  background-color: #24292e;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  animation: fade-out 2s forwards;
+  pointer-events: none;
+}
+
+@keyframes fade-out {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}
