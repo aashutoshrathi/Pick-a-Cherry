@@ -15,6 +15,21 @@ Lately due to branching systems, I've been cherry-picking lots of hotfixes and f
 
 [<img src="https://raw.githubusercontent.com/alrra/browser-logos/90fdf03c/src/chrome/chrome.svg" width="48" alt="Chrome" valign="middle">][link-chrome] [<img valign="middle" src="https://img.shields.io/chrome-web-store/v/pdbnnigeceanokfkdombfhoebgobkfhc.svg?label=%20">][link-chrome] and other Chromium browsers
 
+### Install from the latest release 📦
+
+Prefer to run it locally, or want a version before it clears Web Store review?
+
+[link-release]: https://github.com/aashutoshrathi/Pick-a-Cherry/releases/latest 'Latest release'
+
+[<img valign="middle" src="https://img.shields.io/github/v/release/aashutoshrathi/Pick-a-Cherry?label=Download%20latest%20ZIP&style=for-the-badge&logo=github">][link-release]
+
+1. Download the `.zip` from the [latest release][link-release]
+2. Unzip it somewhere you'll keep it — Chrome loads the extension from this folder every time it starts
+3. Open Chrome and navigate to `chrome://extensions/`
+4. Enable "Developer mode" by toggling the switch in the top right corner
+5. Click "Load unpacked" and select the unzipped folder
+6. The cherry should now show up next to commits on GitHub
+
 ## Features 🌟
 
 - Adds a cherry icon next to each commit on GitHub commit pages and PR pages.
