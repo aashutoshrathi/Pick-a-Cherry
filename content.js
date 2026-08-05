@@ -20,48 +20,54 @@ function isPullRequestPage() {
 }
 
 function addCherryIcons() {
-  const commitElements = document.querySelectorAll(
-    '.TimelineItem-body a:not(.markdown-title)[href*="/commits/"]'
-  );
-  const prCommitElements = document.querySelectorAll(
-    '[data-testid="commit-row-item"] [aria-label="View commit details"]'
-  );
+  // GitHub's commits list and PR "Commits" tab both render each commit as a
+  // <li data-testid="commit-row-item"> in the Primer (prc-*) layout.
+  const commitRows = document.querySelectorAll('[data-testid="commit-row-item"]');
 
-  commitElements.forEach((commitElement) => {
-    if (!commitElement.querySelector(".cherry-pick-button")) {
-      const commitId = getCommitId(commitElement);
-      if (commitId) {
-        addCherryIconToElement(commitElement, commitId);
-      }
+  commitRows.forEach((row) => {
+    if (row.querySelector(".cherry-pick-button")) {
+      return;
     }
-  });
 
-  prCommitElements.forEach((commitElement) => {
-    if (!commitElement.parentElement.querySelector(".cherry-pick-button")) {
-      const commitId = commitElement.textContent.trim();
-      if (commitId) {
-        addCherryIconToElement(commitElement.parentElement, commitId);
-      }
+    const commitId = getCommitId(row);
+    const container = getShaContainer(row);
+    if (commitId && container) {
+      addCherryIconToElement(container, commitId);
     }
   });
 }
 
-function getCommitId(commitElement) {
-  const commitSha = commitElement.textContent;
-  if (commitSha) {
-    return commitSha.trim();
+function getCommitId(row) {
+  // Prefer the full SHA from any commit-related link (/commit, /tree, /changes).
+  for (const link of row.querySelectorAll("a[href]")) {
+    const href = link.getAttribute("href") || "";
+    const match =
+      href.match(/\/(?:commit|tree|changes)\/([a-f0-9]{7,40})\b/) ||
+      href.match(/\b([a-f0-9]{40})\b/);
+    if (match) {
+      return match[1];
+    }
   }
 
-  // Alternative: check for commit link
-  const commitLink = commitElement.href;
-  if (commitLink) {
-    const match = commitLink.match(/\/commit\/([a-f0-9]+)/);
-    if (match && match[1]) {
+  // Fallback: the "Copy full SHA for <sha>" control exposes the short SHA.
+  const copyControl = row.querySelector('[aria-label^="Copy full SHA for "]');
+  if (copyControl) {
+    const match = copyControl
+      .getAttribute("aria-label")
+      .match(/Copy full SHA for ([a-f0-9]{7,40})/);
+    if (match) {
       return match[1];
     }
   }
 
   return null;
+}
+
+// The SHA link and its "Copy full SHA" button share a .d-flex wrapper; that's
+// where the cherry button slots in naturally next to the commit hash.
+function getShaContainer(row) {
+  const copyControl = row.querySelector('[aria-label^="Copy full SHA"]');
+  return copyControl ? copyControl.closest(".d-flex") : null;
 }
 
 function addCherryIconToElement(element, commitId) {
