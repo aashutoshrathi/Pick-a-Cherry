@@ -13,12 +13,6 @@
       "css": ["style.css"]
     }
   ],
-  "web_accessible_resources": [
-    {
-      "resources": ["cherry.svg"],
-      "matches": ["*://github.com/*"]
-    }
-  ],
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
