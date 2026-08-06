@@ -18,7 +18,17 @@ function detectPlatform() {
   return document.body.dataset.page ? PLATFORMS.gitlab : PLATFORMS.github;
 }
 
+// Held across calls so a client-side navigation can retire the previous page's
+// observer. Without this they stack up, and every one of them re-scans the
+// whole document on each mutation.
+let contentObserver = null;
+
 function initCherryPicker() {
+  if (contentObserver) {
+    contentObserver.disconnect();
+    contentObserver = null;
+  }
+
   const platform = detectPlatform();
 
   if (platform.isCommitPage()) {
@@ -220,7 +230,7 @@ function showCopyFeedback(button) {
 function observeChanges(platform) {
   let pending = false;
 
-  const observer = new MutationObserver((mutations) => {
+  contentObserver = new MutationObserver((mutations) => {
     let shouldCheck = false;
 
     mutations.forEach((mutation) => {
@@ -240,7 +250,7 @@ function observeChanges(platform) {
     }
   });
 
-  observer.observe(document.body, {
+  contentObserver.observe(document.body, {
     childList: true,
     subtree: true,
   });

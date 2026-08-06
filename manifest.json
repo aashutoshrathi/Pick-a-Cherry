@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Pick-a-Cherry",
   "author": "Aashutosh Rathi",
-  "version": "1.2",
+  "version": "1.2.1",
   "description": "Adds a cherry icon next to GitHub and GitLab commits for easy cherry-picking",
   "permissions": ["clipboardWrite"],
   "default_locale": "en",
