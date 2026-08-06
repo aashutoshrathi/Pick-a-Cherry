@@ -3,12 +3,12 @@
   "name": "Pick-a-Cherry",
   "author": "Aashutosh Rathi",
   "version": "1.2",
-  "description": "Adds a cherry icon next to GitHub commits for easy cherry-picking",
+  "description": "Adds a cherry icon next to GitHub and GitLab commits for easy cherry-picking",
   "permissions": ["clipboardWrite"],
   "default_locale": "en",
   "content_scripts": [
     {
-      "matches": ["*://github.com/*"],
+      "matches": ["*://github.com/*", "*://gitlab.com/*"],
       "js": ["content.js"],
       "css": ["style.css"]
     }

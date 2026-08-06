@@ -1,6 +1,6 @@
 # Pick-a-Cherry 🍒
 
-A Chrome extension that adds a cherry icon next to commits on GitHub for easy cherry-picking. _Pick a cherry, don't pop them!_
+A Chrome extension that adds a cherry icon next to commits on GitHub and GitLab for easy cherry-picking. _Pick a cherry, don't pop them!_
 
 > [!NOTE]  
 > Wanted to name this extension as "Shabri" but later realized she was more of a berry person.
@@ -32,7 +32,9 @@ Prefer to run it locally, or want a version before it clears Web Store review?
 
 ## Features 🌟
 
-- Adds a cherry icon next to each commit on GitHub commit pages and PR pages.
+- Adds a cherry icon next to each commit on:
+  - **GitHub** — commit pages and PR pages
+  - **GitLab** — commit lists, single commit pages, and the MR "Commits" tab
 - Cherry icon wiggles on hover for visual feedback.
 - Clicking the cherry copies the `git cherry-pick [commit-id]` command to clipboard.
 - Shows "Copied!" feedback when the command is copied.
